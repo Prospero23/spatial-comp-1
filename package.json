@@ -1,0 +1,25 @@
+{
+  "name": "spatial-comp-1",
+  "version": "1.0.0",
+  "description": "## Outline Participants use phones to navigate three dimensional space",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prospero23/spatial-comp-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prospero23/spatial-comp-1/issues"
+  },
+  "homepage": "https://github.com/Prospero23/spatial-comp-1#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

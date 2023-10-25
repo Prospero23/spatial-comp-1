@@ -14,6 +14,7 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
 const spriteMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // Make sprite red for visibility
+
 const sprite = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), spriteMaterial); // Smaller geometry for sprite
 sprite.position.z = camera.position.z - 0.5
 scene.add(sprite);
@@ -31,6 +32,9 @@ window.addEventListener('keyup', (event) => {
     keyState[event.key.toLowerCase()] = false;
 });
 
+const normalScale = new THREE.Vector3(1, 1, 1);
+const largerScale = new THREE.Vector3(1.5, 1.5, 1.5); // Adjust these values as needed
+
 function updateMovement(delta) {
     const moveAmount = MOVE_SPEED * delta;
     if (keyState['w']) sprite.position.z -= moveAmount;
@@ -39,6 +43,11 @@ function updateMovement(delta) {
     if (keyState['d']) sprite.position.x += moveAmount;
     if (keyState['r']) sprite.position.y += moveAmount;
     if (keyState['f']) sprite.position.y -= moveAmount;
+    if (keyState[' ']) { // spacebar
+        sprite.scale.copy(largerScale);
+    } else {
+        sprite.scale.copy(normalScale);
+    }
 }
 
 function animate() {

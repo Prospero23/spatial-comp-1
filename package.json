@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.88.10",
     "@react-three/fiber": "^8.15.9",
+    "@react-three/rapier": "^1.1.2",
     "@types/three": "^0.158.1",
     "playroomkit": "^0.0.42",
     "react": "^18.2.0",

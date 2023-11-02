@@ -1,10 +1,14 @@
-import { OrbitControls } from "@react-three/drei";
-import { insertCoin, onPlayerJoin, Joystick } from "playroomkit";
+import { insertCoin, onPlayerJoin, Joystick, PlayerState, myPlayer,  } from "playroomkit";
 import { useEffect, useState } from "react";
+import { CharacterController} from "./UserController";
 
+interface Player {
+  state: PlayerState;
+  joystick: Joystick
+}
+export const Experience = ({downgradedPerformance = false}) => {
+  const [players, setPlayers] = useState<Player[]>([]);
 
-export const Experience = () => {
-  const [players, setPlayers] = useState([]);
   const start = async () => {
     // Start the game
     await insertCoin();
@@ -28,13 +32,25 @@ export const Experience = () => {
   useEffect(() => {
     start();
   }, []);
+
+
+  const onPlay = () => {
+    // do something w the audio to trigger it
+  };
+
   return (
     <>
-      <OrbitControls/>
-      <mesh>
-        <boxGeometry />
-        <meshNormalMaterial />
-      </mesh>
+        {players.map(({ state, joystick }, index) => (
+        <CharacterController
+          key={state.id}
+          state={state}
+          userPlayer={state.id === myPlayer()?.id}
+          joystick={joystick}
+          onPlay={onPlay}
+          downgradedPerformance={downgradedPerformance}
+        />
+      ))}
+
     </>
   );
 };

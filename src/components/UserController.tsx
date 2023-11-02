@@ -1,7 +1,7 @@
 import { CameraControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { CapsuleCollider, RapierRigidBody, RigidBody, vec3 } from "@react-three/rapier";
-import { isHost } from "playroomkit";
+import { PlayerState, isHost } from "playroomkit";
 import { RefObject, useEffect, useRef } from "react";
 import { UserModel } from "./UserModel";
 import {Vector3, type Group, DirectionalLight } from "three";
@@ -98,9 +98,7 @@ export const CharacterController = ({
         // trigger playing animation           
         if (isHost()) {
           // audio scheduling logic
-            // onPlay()
-          console.log("play")
-              
+            onPlay()              
         }
       }
               // Check if up button is pressed

@@ -1,6 +1,8 @@
 import { insertCoin, onPlayerJoin, Joystick, PlayerState, myPlayer,  } from "playroomkit";
 import { useEffect, useState } from "react";
 import { CharacterController} from "./UserController";
+import useAudio from "./useAudio";
+
 
 interface Player {
   state: PlayerState;
@@ -33,9 +35,11 @@ export const Experience = ({downgradedPerformance = false}) => {
     start();
   }, []);
 
+  const {playNote} = useAudio();
 
   const onPlay = () => {
-    // do something w the audio to trigger it
+    const freq = Math.random() * 1000 + 100
+    playNote(freq)
   };
 
   return (

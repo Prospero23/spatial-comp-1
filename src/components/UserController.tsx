@@ -5,6 +5,7 @@ import { isHost } from "playroomkit";
 import { RefObject, useEffect, useRef } from "react";
 import { UserModel } from "./UserModel";
 import {Vector3, type Group, DirectionalLight } from "three";
+
 const MOVEMENT_SPEED = 202;
 
 interface CharacterControllerTypes {
@@ -92,15 +93,39 @@ export const CharacterController = ({
     } else {
       // do nothing
     }
-
-    // Check if fire button is pressed
+        // Check if fire button is pressed
     if (joystick.isPressed("play")) {
+        // trigger playing animation           
+        if (isHost()) {
+          // audio scheduling logic
+            // onPlay()
+          console.log("play")
+              
+        }
+      }
+              // Check if up button is pressed
+    if (joystick.isPressed("up")) {
+        // trigger playing animation
+       
+        if (isHost()) {
+          // audio scheduling logic
+          // onPlay()
+          const impulse = {x: 0, y: MOVEMENT_SPEED * delta, z: 0}
+          rigidbody.current.applyImpulse(impulse, true)
+          
+        }
+      }
+
+    // Check if down button is pressed
+    if (joystick.isPressed("down")) {
       // trigger playing animation
      
       if (isHost()) {
         // audio scheduling logic
         // onPlay()
-        console.log("play")
+        const impulse = {x: 0, y: -MOVEMENT_SPEED * delta, z: 0}
+        rigidbody.current.applyImpulse(impulse, true)
+
       }
     }
 
@@ -161,4 +186,3 @@ export const CharacterController = ({
     </group>
   );
 };
-

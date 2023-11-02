@@ -17,7 +17,8 @@
     "playroomkit": "^0.0.42",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "^0.158.0"
+    "three": "^0.158.0",
+    "tone": "^14.7.77"
   },
   "devDependencies": {
     "@types/react": "^18.2.33",

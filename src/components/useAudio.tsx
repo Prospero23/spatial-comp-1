@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone';
 
 function useAudio() {
@@ -25,6 +25,11 @@ function useAudio() {
         // Trigger a note with Tone.js
         synth.current?.triggerAttackRelease(note, "8n", Tone.now());
     };
+    const init = () => {
+        if (Tone.context.state === "suspended"){
+            Tone.start();
+        }
+    }
 
     // Expose any actions or state that the components might need
     return { playNote };

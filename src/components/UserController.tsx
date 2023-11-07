@@ -1,18 +1,19 @@
 import { CameraControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { CapsuleCollider, RapierRigidBody, RigidBody, vec3 } from "@react-three/rapier";
-import { PlayerState, isHost } from "playroomkit";
+import { CapsuleCollider, RapierRigidBody, RigidBody, vec3, } from "@react-three/rapier";
+import { Joystick, PlayerState, isHost } from "playroomkit";
 import { RefObject, useEffect, useRef } from "react";
 import { UserModel } from "./UserModel";
 import {Vector3, type Group, DirectionalLight } from "three";
+import { Vector } from "@dimforge/rapier3d-compat";
 
 const MOVEMENT_SPEED = 202;
 
 interface CharacterControllerTypes {
     state: any;
-    joystick: any;
+    joystick: Joystick;
     userPlayer: any;
-    onPlay: () => void;
+    onPlay: (pos: Vector) => void;
     downgradedPerformance: boolean;
 }
 
@@ -95,11 +96,15 @@ export const CharacterController = ({
     }
         // Check if fire button is pressed
     if (joystick.isPressed("play")) {
-        // trigger playing animation           
-        if (isHost()) {
+        // TODO: trigger playing anim
           // audio scheduling logic
-            onPlay()              
-        }
+          if (!state.state.isPlaying){
+            state.state.isPlaying = true
+            onPlay(rigidbody.current.translation())  
+            console.log("boom")            
+          }
+      } else {
+          state.state.isPlaying = false
       }
               // Check if up button is pressed
     if (joystick.isPressed("up")) {

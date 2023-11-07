@@ -2,6 +2,8 @@ import { insertCoin, onPlayerJoin, Joystick, PlayerState, myPlayer,  } from "pla
 import { useEffect, useState } from "react";
 import { CharacterController} from "./UserController";
 import useAudio from "./useAudio";
+import { Vector3 } from "three";
+import { Vector } from "@dimforge/rapier3d-compat";
 
 
 interface Player {
@@ -37,8 +39,8 @@ export const Experience = ({downgradedPerformance = false}) => {
 
   const {playNote} = useAudio();
 
-  const onPlay = () => {
-    const freq = Math.random() * 1000 + 100
+  const onPlay = (pos: Vector) => {
+    const freq = pos.y * 100
     playNote(freq)
   };
 
@@ -58,7 +60,3 @@ export const Experience = ({downgradedPerformance = false}) => {
     </>
   );
 };
-
-
-// sound central to the space? 
-// need two joysticks
